@@ -30,67 +30,67 @@ import PrivacyModal from 'components/privacyModal/privacy'
 
 
 const App = () => {
-    return (
-        <div className="App">
-            <Router history={history}>
-                <Header />
-                <div className="main-container">
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => <Redirect from="/" to="/EventList" />}
-                        />
-                        <Route exact path="/EventList" component={EventList} />
-                        <Route
-                            exact
-                            path="/EventDetail/:id"
-                            component={EventDetail}
-                        />
-                        <Route exact path="/AddShow" component={AddShow} />
-                        <Route
-                            exact
-                            path="/WikiBands"
-                            component={WikiListBands}
-                        />
-                        <Route
-                            exact
-                            path="/WikiBands/:id"
-                            component={WikiBandDetail}
-                        />
-                        <Route
-                            exact
-                            path="/WikiVenues"
-                            component={WikiListVenues}
-                        />
+  return (
+    <div className="App">
+      <Router history={history}>
+        <Header />
+        <div className="main-container">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect from="/" to="/EventList" />}
+            />
+            <Route exact path="/EventList" component={EventList} />
+            <Route
+              exact
+              path="/EventDetail/:id"
+              component={EventDetail}
+            />
+            <Route exact path="/AddShow" component={AddShow} />
+            <Route
+              exact
+              path="/WikiBands"
+              component={WikiListBands}
+            />
+            <Route
+              exact
+              path="/WikiBands/:id"
+              component={WikiBandDetail}
+            />
+            <Route
+              exact
+              path="/WikiVenues"
+              component={WikiListVenues}
+            />
 
-                        <Route exact path="/asdf" component={LogInForm} />
+            <Route exact path="/asdf" component={LogInForm} />
 
-                        <Route exact path="/Imprint" component={Imprint} />
+            <Route exact path="/Imprint" component={Imprint} />
 
-                        <Route exact path="/Privacy" component={Privacy} />
+            <Route exact path="/Privacy" component={Privacy} />
 
 
-                        <Route
-                            exact
-                            path="/Underground"
-                            component={Underground}
-                        />
-                        <Route
-                            exact
-                            path="/RequestedShows"
-                            component={RequestedShows}
-                        />
-                        <Route path="*" component={PageNotFound} />
-                    </Switch>
-                </div>
-                <PrivacyModal />
-                <Footer />
-                <RequestActor />
-                <UserActor />
-            </Router>
+            <Route
+              exact
+              path="/Underground"
+              component={Underground}
+            />
+            <Route
+              exact
+              path="/RequestedShows"
+              component={RequestedShows}
+            />
+            <Route path="*" component={PageNotFound} />
+          </Switch>
         </div>
-    )
+        <PrivacyModal />
+        <Footer />
+        <RequestActor />
+        <UserActor />
+      </Router>
+    </div>
+  )
 }
 
 export default App

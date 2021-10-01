@@ -1,12 +1,12 @@
 import { createAction } from 'redux-actions'
 
 import {
-    ADD_EVENT,
-    SET_OWN_REQUEST,
-    ADD_EVENT_REMOTE,
-    ADD_EVENT_SUCCESS,
-    ADD_EVENT_ERROR,
-    REST_ADD_EVENT_REQUEST,
+  ADD_EVENT,
+  SET_OWN_REQUEST,
+  ADD_EVENT_REMOTE,
+  ADD_EVENT_SUCCESS,
+  ADD_EVENT_ERROR,
+  REST_ADD_EVENT_REQUEST,
 } from 'rdx/constants/actionTypes'
 
 export const addEvent = createAction(ADD_EVENT)
