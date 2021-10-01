@@ -1,3 +1,17 @@
+# Good Night Couch Side
+
+## Installation
+Clone the repo and run 
+
+```bash
+npm install
+```
+## Development
+## Testing
+## Deployment
+## License
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Init Git Flow
