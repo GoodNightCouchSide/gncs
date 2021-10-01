@@ -16,18 +16,18 @@ let enhancers = []
 // if (nodeEnv === 'development') {
 const composeEnhancers = composeWithDevTools({})
 const logger = createLogger({
-    collapsed: true,
+  collapsed: true,
 })
 enhancers = composeEnhancers(
-    (enhancers = applyMiddleware(
-        logger,
-        createDebounce(),
-        couchdbMiddleware,
-        userMiddleware,
-        appUserMiddleware,
-        routeHistoryMiddleware,
-        privacyMiddleware
-    ))
+  (enhancers = applyMiddleware(
+    logger,
+    createDebounce(),
+    couchdbMiddleware,
+    userMiddleware,
+    appUserMiddleware,
+    routeHistoryMiddleware,
+    privacyMiddleware
+  ))
 )
 // }
 

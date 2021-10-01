@@ -11,13 +11,13 @@ import { eventFilterReducer } from 'components/eventFilter/reducer'
 import { privacyReducer } from 'components/privacyModal/privacy/reducer'
 
 export default combineReducers({
-    eventList: eventListReducer,
-    loginState: loginStateReducer,
-    userCtx: userCtxReducer,
-    ownRequestIds: ownRequestIdsReducer,
-    addShowRequest: addShowRequestReducer,
-    venues: venuesReducer,
-    genres: genresReducer,
-    eventFilter: eventFilterReducer,
-    privacy: privacyReducer,
+  eventList: eventListReducer,
+  loginState: loginStateReducer,
+  userCtx: userCtxReducer,
+  ownRequestIds: ownRequestIdsReducer,
+  addShowRequest: addShowRequestReducer,
+  venues: venuesReducer,
+  genres: genresReducer,
+  eventFilter: eventFilterReducer,
+  privacy: privacyReducer,
 })
