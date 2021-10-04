@@ -1,4 +1,11 @@
 # Good Night Couch Side
+## Table of contents
+- [Installation](#installation)
+- [Development](#development)
+- [Code formatting and linting](#code-formatting-and-linting)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [License](#license)
 
 ## Installation
 Clone the repo and run 
@@ -25,6 +32,24 @@ How to name your supporting branch prefixes?
 Version tag prefix? [] 
 // TODO Update
 Hooks and filters directory? [/home/tim/workspace/gncs/web-app/.git/hooks]
+
+## Code formatting and linting
+
+To run the code formatting tool:
+
+```bash
+$ npm run format
+```
+
+This will cause [ESLint](https://eslint.org/) to automatically fix any code correctness issues.
+
+To run the linting checks:
+
+```bash
+$ npm run lint
+```
+
+This will not attempt any automatic fixes, which is preferable during test runs.
 
 ## Testing
 
