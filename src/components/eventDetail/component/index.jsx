@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'react-bootstrap'
-import Moment from 'react-moment'
+import moment from 'moment'
+
 import { eventShape } from 'gncsPropTypes'
 import { randomFigure } from 'components/utils'
-
-
-
 
 class EventDetail extends React.Component {
   componentDidUpdate() {
@@ -21,33 +19,27 @@ class EventDetail extends React.Component {
     let imageNumber = randomFigure(20)
     const imageName = '.jpg'
     const imagePath = '/images/eventDetailHeader/'
+    const eventDate = moment(event.date).format('DD.MM.YYYY - HH.mm')
+    const [eventDay, eventTime] = eventDate.split(' - ')
 
     return (
       <div className="event-detail">
         <Col>
           <div className="event-head" style={{ backgroundImage: `url("${imagePath}${imageNumber}${imageName}")` }} >
             <img src="" />
-            <div className="event-headline">
-              <h2>
-                <Moment format="DD.MM.YYYY - HH.mm">
-                  {event.date}
-                </Moment>
-              </h2>
-            </div>
-            <div className="event-headline">
-              <h2>
-                {event.name && event.name.trim() !== ''
-                  ? event.name
-                  : event.headliner}
-              </h2>
-            </div>
-            <div className="event-headline">
-              <h2>{event.venue}</h2>
-            </div>
+            <h2 className="event-headline">
+              {eventDate}
+            </h2>
+            <h2 className="event-headline">
+              {event.name && event.name.trim() !== ''
+                ? event.name
+                : event.headliner}
+            </h2>
+            <h2 className="event-headline">{event.venue}</h2>
           </div>
 
           <Row className="event-body">
-            <Col md={{ span: 6}}>
+            <Col md={{ span: 6 }}>
               <div>
                 {event.description ?
                   (
@@ -74,34 +66,30 @@ class EventDetail extends React.Component {
               ))}
             </Col>
 
-            <Col md={{ span: 4, offset: 2}}  className="float-right event-details">    
+            <Col md={{ span: 4, offset: 2 }} className="float-right event-details">
               <div className="floatright">
-                                
+
                 <h2>Details</h2>
                 <ul>
                   <li>
                     <span className="float-left">
-                                            Date:
+                      Date:
                     </span>
                     <span className="float-right">
-                      <Moment format="DD.MM.YYYY">
-                        {event.date}
-                      </Moment>
+                      {eventDay}
                     </span>
                   </li>
                   <li>
                     <span className="float-left">
-                                            Start:
+                      Start:
                     </span>
                     <span className="float-right">
-                      <Moment format="HH.mm">
-                        {event.date}
-                      </Moment>
+                      {eventTime}
                     </span>
                   </li>
                   <li>
                     <span className="float-left">
-                                            Location:
+                      Location:
                     </span>
                     <span className="float-right text-right">
                       {event.venue} <br />
@@ -112,7 +100,7 @@ class EventDetail extends React.Component {
                   </li>
                   <li>
                     <span className="float-left">
-                                            Presale:
+                      Presale:
                     </span>
                     <span className="float-right">
                       {event.presale ? event.presale : '-'}
@@ -120,7 +108,7 @@ class EventDetail extends React.Component {
                   </li>
                   <li>
                     <span className="float-left">
-                                            box office: 
+                      box office:
                     </span>
                     <span className="float-right">
                       {event.atTheDoor ? event.atTheDoor : '-'}
@@ -134,7 +122,7 @@ class EventDetail extends React.Component {
                           rel="noopener noreferrer"
                           target="_blank"
                         >
-                                                    Facebook Event
+                          Facebook Event
                         </a>
                       </>
                     ) : (

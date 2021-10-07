@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 import { eventShape } from 'gncsPropTypes'
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Moment from 'react-moment'
+import moment from 'moment'
+
 import EventTitle from './eventTitle'
 import { randomFigure } from 'components/utils'
 
 const EventListItem = ({ event }) => {
-
-    
-  let imageNumber = randomFigure(20)
+  const imageNumber = randomFigure(20)
   const imageName = '.jpg'
   const imagePath = '/images/eventListElement/'
-    
+  const eventDate = moment(event.date).format('HH:mm | DD.MM.YYYY')
+
   return (
     <Link to={'/EventDetail/' + event._id}>
       <div className="list-event">
@@ -33,13 +33,13 @@ const EventListItem = ({ event }) => {
           </Col>
           <Col md={3} className="d-none d-sm-block">
             <h2>{event.venue}</h2>
-            <Moment format="HH:mm | DD.MM.YYYY">{event.date}</Moment>
+            {eventDate}
           </Col>
           <Col xs={12} className="d-block d-sm-none">
             <h3>
               <span className="float-left">{event.venue}</span>
               <span className="float-right">
-                <Moment format="HH:mm | DD.MM.YYYY">{event.date}</Moment>
+                {eventDate}
               </span>
             </h3>
           </Col>

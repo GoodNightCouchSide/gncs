@@ -18,17 +18,16 @@
     word-spacing: $space-m;
     text-transform: uppercase;
     min-height: 50px;
-    h2, h3 {
-      font-size: 22px;
-      margin-bottom: 0;
-    }
+    font-size: 22px;
+    margin-bottom: 0;
   }
+
   .event-head {
     border-bottom: $border-s-primary;
     margin-bottom: $space-l;
     margin: 0 -$space-l;
     padding-top: $space-l;
-    background-position: center; 
+    background-position: center;
     min-height: 220px;
   }
   .event-body {
