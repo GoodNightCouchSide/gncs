@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import momentPropTypes from 'react-moment-proptypes'
 import { Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAsterisk } from '@fortawesome/free-solid-svg-icons'
@@ -73,7 +72,7 @@ class MetaShowForm extends React.Component {
         <Col xs={12} md={3}>
           <Form.Group id='date'>
             <Form.Label>
-                            Date <FontAwesomeIcon icon={faAsterisk} />
+              Date <FontAwesomeIcon icon={faAsterisk} />
             </Form.Label>
             <Datetime required value={eventDate} onChange={this.handleChangeDate} />
           </Form.Group>
@@ -92,7 +91,7 @@ class MetaShowForm extends React.Component {
         <Col xs={12} md={3}>
           <Form.Group id='venue'>
             <Form.Label>
-                            Venue name <FontAwesomeIcon icon={faAsterisk} />
+              Venue name <FontAwesomeIcon icon={faAsterisk} />
             </Form.Label>
             <Typeahead
               id='input-venue-name'
@@ -137,7 +136,7 @@ class MetaShowForm extends React.Component {
               onChange={this.handleChangeTextInput}
             >
               <option value='' disabled>choose Region</option>
-              {REGIONLIST.map(region=>(
+              {REGIONLIST.map(region => (
                 <option value={region} key={region}>{region}</option>
               ))}
             </Form.Control>
@@ -187,7 +186,7 @@ class MetaShowForm extends React.Component {
 MetaShowForm.propTypes = {
   updateState: PropTypes.func.isRequired,
   eventName: PropTypes.string,
-  eventDate: momentPropTypes.momentObj,
+  eventDate: PropTypes.string,
   eventFacebookLink: PropTypes.string,
   venues: PropTypes.array,
   venueStreet: PropTypes.string,

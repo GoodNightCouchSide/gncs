@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import history from 'rdx/history'
-// import {Button} from 'react-bootstrap';
 
 import EventDetail from 'components/eventDetail/container'
 import EventList from 'components/eventList/container/acceptedShows'
