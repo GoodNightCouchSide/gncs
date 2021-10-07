@@ -12,10 +12,6 @@ import Underground from 'components/underground/component'
 import Imprint from 'components/imprint/component'
 import Privacy from 'components/privacy/component'
 
-import WikiListBands from 'components/wiki/wikiListBands/container'
-import WikiBandDetail from 'components/wiki/wikiBandDetail/container'
-import WikiListVenues from 'components/wiki/wikiListVenues/container'
-
 import Header from 'components/header/container'
 import Footer from 'components/footer/component'
 
@@ -48,21 +44,6 @@ const App = () => {
               component={EventDetail}
             />
             <Route exact path="/AddShow" component={AddShow} />
-            <Route
-              exact
-              path="/WikiBands"
-              component={WikiListBands}
-            />
-            <Route
-              exact
-              path="/WikiBands/:id"
-              component={WikiBandDetail}
-            />
-            <Route
-              exact
-              path="/WikiVenues"
-              component={WikiListVenues}
-            />
 
             <Route exact path="/asdf" component={LogInForm} />
 
