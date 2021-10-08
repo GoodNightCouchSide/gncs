@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, Button, Col, Row } from 'react-bootstrap'
-import uuidv1 from 'uuid/v1'
+import { v1 } from 'uuid'
 import crypto from 'crypto'
 import ksuid from 'ksuid'
 
@@ -28,7 +28,7 @@ class ShowForm extends Component {
       headlinerGenre: [],
       headlinerLinks: ['', ''],
       support: {
-        [uuidv1()]: {
+        [v1()]: {
           name: '',
           genres: [],
           links: ['', ''],

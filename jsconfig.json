@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "baseUrl": "src",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules", "build"]
+}
