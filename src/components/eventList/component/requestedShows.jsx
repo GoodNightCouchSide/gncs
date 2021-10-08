@@ -16,7 +16,7 @@ const RequestedShows = ({ loadRequestedShows, requestedShows }) => {
                 ? requestedShows.rows
                     .map((item) => item.doc)
                     .map((event) => (
-                        <EventListItem key={event._id} event={event} />
+                        <EventListItem key={event._id} event={event} requestetShows/>
                     ))
                 : 'not request shows'}
         </Col>

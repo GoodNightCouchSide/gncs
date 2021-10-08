@@ -1,17 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Col, Row } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
 import moment from 'moment'
 
 import { eventShape } from 'gncsPropTypes'
 import { randomFigure } from 'components/utils'
 
 class EventDetail extends React.Component {
-  componentDidUpdate() {
-    const { event, isEventListEmpty, redirctToPageNotFound } = this.props
-    if (!event && !isEventListEmpty) redirctToPageNotFound()
-  }
+    constructor(props) {
+        super(props)
+        this.handleAcceptShow = this.handleAcceptShow.bind(this)
+    }
+    componentDidUpdate() {
+        console.log(this.props)
+        const { event, isEventListEmpty, redirctToPageNotFound } = this.props
+        if (!event && !isEventListEmpty) redirctToPageNotFound()
+    }
 
+    handleAcceptShow(e) {
+        let event = this.props.event
+        if (event._rev) delete event._rev
+        this.props.acceptShowRequest(event)
+    }
   render() {
     const { event } = this.props
     if (!event) return <div>not found</div>
@@ -46,25 +56,6 @@ class EventDetail extends React.Component {
                     <div>
                       <p>{event.description}</p>
                     </div>
-                  ) : ''
-                }
-              </div>
-              {event.artist_details.map((artist_details, index) => (
-                <div key={index} className="event-artist-details">
-                  <h2>{artist_details.name}</h2>
-                  <p>Genre: {artist_details.genres.join(', ')}</p>
-                  <ul>
-                    {artist_details.links.map((link, index) => (
-                      <li key={index}>
-                        <a href={link} target="_blank" rel="noopener noreferrer">
-                          {link}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </Col>
 
             <Col md={{ span: 4, offset: 2 }} className="float-right event-details">
               <div className="floatright">
@@ -140,10 +131,11 @@ class EventDetail extends React.Component {
 }
 
 EventDetail.propTypes = {
-  event: PropTypes.shape(eventShape),
-  handleClick: PropTypes.func,
-  isEventListEmpty: PropTypes.bool,
-  redirctToPageNotFound: PropTypes.func,
+    event: PropTypes.shape(eventShape),
+    handleClick: PropTypes.func,
+    isEventListEmpty: PropTypes.bool,
+    redirctToPageNotFound: PropTypes.func,
+    acceptShowRequest: PropTypes.func.isRequired,
 }
 
 export default EventDetail

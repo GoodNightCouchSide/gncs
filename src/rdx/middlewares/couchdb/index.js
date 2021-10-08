@@ -18,6 +18,7 @@ import {
     GET_ALL_VENUES,
     GET_ALL_GENRES,
     LOAD_REQUESTED_SHOWS,
+    ACCEPT_SHOW_REQUEST,
 } from 'rdx/constants/actionTypes'
 import {
     setOwnRequest,
@@ -37,6 +38,11 @@ export const localDB = new PouchDB('gncs')
 export const requests = new PouchDB('requests')
 
 export const couchdbMiddleware = (store) => (next) => {
+    const EVENT_HEAD_IMAGES_MATRIX = {
+        punk: ['1.jpg'],
+        metal: ['1.jpg'],
+    }
+
     localDB.replicate
         .from(remoteDB, {
             live: true,
@@ -218,15 +224,92 @@ export const couchdbMiddleware = (store) => (next) => {
                             // handle error
                             console.log('handle error: ', err)
                         })
+                    console.log('set request as admin')
+                    PouchDB.replicate(requests, remoteCouchdbUrl('request'), {
+                        live: true,
+                        retry: true,
+                    })
+                        .on('change', (change) => {
+                            const events = change.docs.filter(
+                                (item) => item.type === 'event'
+                            )
+                            if (events.length > 0) {
+                                console.log('request event: ', events)
+                                // store.dispatch(addOrUpdateEvents(events))
+                            }
+                        })
+                        .on('paused', function (err) {
+                            // replication paused (e.g. replication up to date, user went offline)
+                            console.log(
+                                'replication paused (e.g. replication up to date, user went offline): ',
+                                err
+                            )
+                        })
+                        .on('active', function () {
+                            // replicate resumed (e.g. new changes replicating, user went back online)
+                        })
+                        .on('denied', function (err) {
+                            // a document failed to replicate (e.g. due to permissions)
+                            console.log(
+                                'a document failed to replicate (e.g. due to permissions): ',
+                                err
+                            )
+                        })
+                        .on('complete', function (info) {
+                            // handle complete
+                            console.log('handle complete: ', info)
+                        })
+                        .on('error', function (err) {
+                            // handle error
+                            console.log('handle error: ', err)
+                        })
                 }
                 break
             case LOAD_REQUESTED_SHOWS:
-                new PouchDB(remoteCouchdbUrl('request'))
-                    .allDocs({
-                        include_docs: true,
+                console.log('load requested show from couchdb')
+                // new PouchDB(remoteCouchdbUrl('request'))
+                //     .allDocs({
+                //         include_docs: true,
+                //     })
+                //     .then((results) => {
+                //         store.dispatch(fetchLoadRequestedShows(results))
+                //     })
+                //     .catch((err) => {
+                //         console.error(err)
+                //     })
+                requests
+                    .allDocs({ include_docs: true })
+                    .then((respone) => {
+                        console.log(respone)
+                        store.dispatch(
+                            setOwnRequest(respone.rows.map((item) => item.id))
+                        )
                     })
-                    .then((results) => {
-                        store.dispatch(fetchLoadRequestedShows(results))
+                    .catch((err) => {
+                        console.error(err)
+                    })
+                break
+            case ACCEPT_SHOW_REQUEST:
+                console.log(action.payload)
+                syncRequests
+                    .allDocs()
+                    .then((response) => console.log(response))
+                    .catch((err) => console.log(err))
+                requests
+                    .remove(action.payload._id, action.payload._rev)
+                    .then((response) => {
+                        console.log(response)
+                        if (action.payload._rev) {
+                            delete action.payload._rev
+                        }
+                        localDB
+                            .put(action.payload)
+                            .then((response) => {
+                                console.log(response)
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
                     })
                     .catch((err) => {
                         console.error(err)

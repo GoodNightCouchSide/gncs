@@ -7,7 +7,7 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-    loadRequestedShows: () => dispatch(loadRequestedShows())
+    loadRequestedShows: () => dispatch(loadRequestedShows()),
 })
 
 export default connect(mapState, mapDispatch)(RequestedShows)

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { eventShape } from 'gncsPropTypes'
 import { Col, Row } from 'react-bootstrap'
+import eventListImage from 'assets/img/gncs_eventlist_img.jpg'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
@@ -62,12 +63,15 @@ const EventListItem = ({ event }) => {
         </Row>
       </div>
     </Link>
-  )
-
-}
+)
 
 EventListItem.propTypes = {
-  event: PropTypes.shape(eventShape),
+    event: PropTypes.shape(eventShape),
+    requestetShows: PropTypes.bool,
+}
+
+EventListItem.defaultProps = {
+    requestetShows: false,
 }
 
 export default EventListItem
