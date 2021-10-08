@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
-import uuidv1 from 'uuid/v1'
+import { v1 } from 'uuid'
 
 import GenresForm from './genresForm'
 
@@ -35,7 +35,7 @@ class SupportForm extends React.Component {
 
   addSupport() {
     const support = Object.assign(this.props.support, {})
-    support[uuidv1()] = {
+    support[v1()] = {
       name: '',
       genres: [],
       links: ['', ''],
